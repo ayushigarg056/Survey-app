@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference db;
     private Button btnSubmit;
     String  d;
-    int select1,select2,select3,select4,select5,count1=0,count2=0,count3=0,count4=0,count21=0,count22=0,count23=0,count24=0
+    Long count1,count2,count3,count4;
+    int select1,select2,select3,select4,select5,count21=0,count22=0,count23=0,count24=0
     ,count31=0,count32=0,count33=0,count34=0,count41=0,count42=0,count43=0,count44=0,count51=0,count52=0,count53=0,count54=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         radioGroup4=(RadioGroup)findViewById(R.id.rg4);
         radioGroup5=(RadioGroup)findViewById(R.id.rg5);
 
-        db= FirebaseDatabase.getInstance().getReference("Question");
+        db= FirebaseDatabase.getInstance().getReference();
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,14 +61,21 @@ public class MainActivity extends AppCompatActivity {
             db.child("Question").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    Log.d("check", "onDataChange: "+dataSnapshot);
+                    Log.d("check", "fite : "+dataSnapshot);
                     for (DataSnapshot snap : dataSnapshot.getChildren()) {
-                        Log.d("checkk"," "+snap);
-                        String coun = snap.child("Count1").getValue(String.class);
+                        Log.d("checkk"," muhh "+snap);
+                        count1 = snap.child("Count1").getValue(Long.class);
+                        Log.d("count1", "hello: "+count1);
 
-                        Log.d("a", "hello: "+coun);
-                        int coun1=Integer.parseInt(coun);
-                        Log.d("aa", "theree: "+coun1);
+
+                        count2 = snap.child("Count2").getValue(Long.class);
+                        Log.d("count2", "hello: "+count2);
+
+                        count3 = snap.child("Count3").getValue(Long.class);
+                        Log.d("count3", "hello: "+count3);
+
+                        count4 = snap.child("Count4").getValue(Long.class);
+                        Log.d("count4", "hello: "+count4);
 
                     }
 
@@ -80,24 +88,24 @@ public class MainActivity extends AppCompatActivity {
             });
             if(d.equals("Very Satisfied"))
             {
-
+                count1++;
 
             }
             if(d.equals("Somewhat satisfied"))
             {
-               // count2++;
+                count2++;
             }
             if(d.equals("Somewhat dissatisfied"))
             {
-              //  count3++;
+                count3++;
             }
             if(d.equals("Very dissatisfiedd"))
             {
-               // count4++;
+                count4++;
             }
-
+//
 //            Options op=new Options(count1,count2,count3,count4);
-//            db.child("1").setValue(op);
+//            db.child("Question").child("0").setValue(op);
 //            Toast.makeText(MainActivity.this, "option added 1", Toast.LENGTH_SHORT).show();
 
         }
