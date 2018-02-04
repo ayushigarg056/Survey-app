@@ -5,28 +5,28 @@ package com.ayushi.user.surveyapp.util;
  */
 
 public class Options {
-    Long count1,count2,count3,count4;
+    Long Count1,Count2,Count3,Count4;
 
     public Options(Long count1, Long count2, Long count3, Long count4) {
-        this.count1 = count1;
-        this.count2 = count2;
-        this.count3 = count3;
-        this.count4 = count4;
+        Count1 = count1;
+        Count2 = count2;
+        Count3 = count3;
+        Count4 = count4;
     }
 
     public Long getCount1() {
-        return count1;
+        return Count1;
     }
 
     public Long getCount2() {
-        return count2;
+        return Count2;
     }
 
     public Long getCount3() {
-        return count3;
+        return Count3;
     }
 
     public Long getCount4() {
-        return count4;
+        return Count4;
     }
 }

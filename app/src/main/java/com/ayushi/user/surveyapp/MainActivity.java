@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             db.child("Question").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+
                     Log.d("check", "fite : "+dataSnapshot);
                     for (DataSnapshot snap : dataSnapshot.getChildren()) {
                         Log.d("checkk"," muhh "+snap);
@@ -78,6 +79,27 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("count4", "hello: "+count4);
 
                     }
+                    if(d.equals("Very Satisfied"))
+                    {
+                        count1++;
+
+                    }
+                    if(d.equals("Somewhat satisfied"))
+                    {
+                        count2++;
+                    }
+                    if(d.equals("Somewhat dissatisfied"))
+                    {
+                        count3++;
+                    }
+                    if(d.equals("Very dissatisfiedd"))
+                    {
+                        count4++;
+                    }
+
+                    Options op=new Options(count1,count2,count3,count4);
+                    db.child("Question").child("0").setValue(op);
+                    Toast.makeText(MainActivity.this, "option added 1", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -86,27 +108,8 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
-            if(d.equals("Very Satisfied"))
-            {
-                count1++;
 
-            }
-            if(d.equals("Somewhat satisfied"))
-            {
-                count2++;
-            }
-            if(d.equals("Somewhat dissatisfied"))
-            {
-                count3++;
-            }
-            if(d.equals("Very dissatisfiedd"))
-            {
-                count4++;
-            }
-//
-//            Options op=new Options(count1,count2,count3,count4);
-//            db.child("Question").child("0").setValue(op);
-//            Toast.makeText(MainActivity.this, "option added 1", Toast.LENGTH_SHORT).show();
+
 
         }
 //        select2=radioGroup2.getCheckedRadioButtonId();
